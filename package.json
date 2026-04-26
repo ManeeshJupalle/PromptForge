@@ -1,5 +1,5 @@
 {
-  "name": "promptforge",
+  "name": "promptforge-cli",
   "version": "0.1.0",
   "description": "Jest for prompts — a local-first, multi-provider testing framework for LLM apps. Write assertions, catch regressions, ship with confidence.",
   "keywords": [
@@ -22,14 +22,14 @@
     "typescript"
   ],
   "license": "MIT",
-  "author": "PromptForge contributors",
-  "homepage": "https://github.com/ManeeshJupalle/PromptForge#readme",
+  "author": "PromptForge CLI contributors",
+  "homepage": "https://github.com/ManeeshJupalle/promptforge-cli#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ManeeshJupalle/PromptForge.git"
+    "url": "https://github.com/ManeeshJupalle/promptforge-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/ManeeshJupalle/PromptForge/issues"
+    "url": "https://github.com/ManeeshJupalle/promptforge-cli/issues"
   },
   "type": "module",
   "main": "./dist/index.js",
@@ -40,7 +40,7 @@
     }
   },
   "bin": {
-    "promptforge": "./bin/promptforge"
+    "promptforge-cli": "./bin/promptforge-cli"
   },
   "scripts": {
     "build": "npm run build:cli && npm run build:dashboard",
@@ -48,7 +48,7 @@
     "build:dashboard": "vite build",
     "dev": "tsup --watch",
     "dev:dashboard": "vite",
-    "start": "node ./bin/promptforge",
+    "start": "node ./bin/promptforge-cli",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run typecheck && npm run build"
   },

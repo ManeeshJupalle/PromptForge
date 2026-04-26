@@ -70,7 +70,7 @@ export async function listCommand(paths: string[]): Promise<number> {
   if (missingPrompts > 0) {
     console.log(
       chalk.yellow(
-        `⚠ ${missingPrompts} suite${missingPrompts === 1 ? '' : 's'} reference a prompt file that doesn't exist — \`promptforge run\` will fail on those.`,
+        `⚠ ${missingPrompts} suite${missingPrompts === 1 ? '' : 's'} reference a prompt file that doesn't exist — \`promptforge-cli run\` will fail on those.`,
       ),
     );
     return 1;

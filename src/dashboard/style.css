@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
-/* Dark-by-default. No toggle (Day 5 scope). Theme tokens from the spec:
-   electric blue accent #3B82F6, orange fail #F97316. Greys tuned for a
-   Linear / Vercel feel. */
-@theme {
-  --color-bg: #09090b;
-  --color-surface: #111115;
-  --color-surface-hi: #18181b;
-  --color-border: #27272a;
-  --color-border-hi: #3f3f46;
-  --color-text: #fafafa;
-  --color-text-dim: #a1a1aa;
-  --color-text-muted: #71717a;
-  --color-accent: #3b82f6;
-  --color-accent-dim: #1d4ed8;
-  --color-fail: #f97316;
-  --color-fail-dim: #c2410c;
-  --color-pass: #10b981;
+/* ═══════════════════════════════════════════════════════════════════════
+   PromptForge CLI — "Industrial Precision" design system.
 
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+   Steel-dark base with a single ember-orange accent. The forge brand shows
+   through warm tints in the charcoals, heated-edge borders on emphasis,
+   and mono numeric displays that read like forge-stamped serial numbers.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Base — warm near-black. Not pure #000; the 0.03 red shift gives the
+     dashboard a slight "cooled steel" cast that distinguishes it from the
+     thousand other dark-mode dev tools sitting at #0a0a0a. */
+  --color-bg: #0c0b0f;
+  --color-bg-tint: #100e14;
+  --color-surface: #17151c;
+  --color-surface-hi: #1f1d26;
+  --color-surface-raised: #26232d;
+
+  --color-border: #2a2732;
+  --color-border-hi: #3e3a47;
+
+  --color-text: #ece8f0;
+  --color-text-dim: #9e98a8;
+  --color-text-muted: #5e596a;
+
+  /* Heat — used sparingly. The one thing that will be remembered. */
+  --color-ember: #ff6a1a;
+  --color-ember-hot: #ff8a40;
+  --color-ember-core: #d94d0a;
+  --color-ember-glow: rgba(255, 106, 26, 0.22);
+  --color-ember-faint: rgba(255, 106, 26, 0.07);
+  --color-ember-border: rgba(255, 110, 40, 0.38);
+
+  /* Status */
+  --color-pass: #4cd67a;
+  --color-pass-dim: #2ea357;
+  --color-fail: #ff4e3a;
+  --color-fail-dim: #c63a29;
+  --color-warn: #ffb547;
+
+  /* Chart palette */
+  --color-chart-ember: #ff6a1a;
+  --color-chart-cool: #5ba3e0;
+  --color-chart-grid: #231f2a;
+  --color-chart-axis: #5e596a;
+
+  /* Backwards-compat aliases for existing components */
+  --color-accent: var(--color-ember);
+  --color-accent-dim: var(--color-ember-core);
+
+  /* Typography — IBM Plex for display/body (distinctive, industrial),
+     JetBrains Mono for numerics/code (developer-appropriate character). */
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "IBM Plex Sans Condensed", "IBM Plex Sans", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 html,
@@ -30,20 +64,186 @@ body,
 }
 
 body {
-  background: var(--color-bg);
+  background:
+    /* A single faint radial heat glow in the top-right, like the suggestion
+       of a forge off-screen. Very low opacity — atmosphere, not decoration. */
+    radial-gradient(
+      ellipse 1200px 800px at 100% -10%,
+      var(--color-ember-faint) 0%,
+      transparent 55%
+    ),
+    var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-feature-settings: "ss01", "cv02", "cv03", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Cleaner default focus ring for keyboard users. */
+.pf-shell {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    radial-gradient(circle at 18% 12%, rgba(91, 163, 224, 0.055), transparent 28%),
+    radial-gradient(circle at 92% 8%, var(--color-ember-faint), transparent 34%);
+  background-size:
+    32px 32px,
+    32px 32px,
+    auto,
+    auto;
+}
+
+.pf-rail {
+  background:
+    linear-gradient(180deg, rgba(255, 106, 26, 0.065), transparent 22%),
+    color-mix(in srgb, var(--color-bg) 86%, black);
+}
+
+.pf-mark-plate {
+  display: grid;
+  height: 48px;
+  width: 48px;
+  place-items: center;
+  border: 1px solid var(--color-ember-border);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 181, 71, 0.16), transparent 38%),
+    var(--color-ember-faint);
+  box-shadow: 0 0 28px -12px var(--color-ember-glow);
+}
+
+.pf-rail-link {
+  position: relative;
+  display: flex;
+  min-height: 58px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.18rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--color-text-muted);
+  transition:
+    color 160ms ease-out,
+    background 160ms ease-out,
+    border-color 160ms ease-out,
+    transform 160ms ease-out;
+}
+
+.pf-rail-link:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.pf-rail-link.is-active {
+  color: var(--color-ember-hot);
+  background: var(--color-ember-faint);
+  border-color: var(--color-ember-border);
+  box-shadow: inset 0 0 18px rgba(255, 106, 26, 0.04);
+}
+
+.pf-rail-link.is-active::before {
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--color-ember);
+  box-shadow: 0 0 16px var(--color-ember-glow);
+}
+
+.pf-rail-meter {
+  width: 3px;
+  height: 96px;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-pass) 0 42%,
+      var(--color-warn) 42% 64%,
+      var(--color-ember) 64% 100%
+    );
+  opacity: 0.72;
+}
+
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+}
+
+.pf-mobile-tab {
+  position: relative;
+  padding: 0.4rem 1rem;
+  color: var(--color-text-dim);
+  font-weight: 500;
+  transition: color 150ms ease-out;
+}
+
+.pf-mobile-tab:hover,
+.pf-mobile-tab.is-active {
+  color: var(--color-text);
+}
+
+.pf-mobile-tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: -0.55rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-ember-core), var(--color-ember-hot));
+  box-shadow: 0 0 12px var(--color-ember-glow);
+}
+
+/* Mono numerics use tabular figures so IDs, hashes, durations, and costs
+   column-align across rows without fiddly CSS per-cell. */
+.font-mono,
+code,
+pre,
+kbd,
+samp {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "calt" 0, "ss01", "ss02";
+}
+
+/* Display font — condensed, slightly open tracking. Used for headings and
+   anywhere text needs to feel "stamped." */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* Utility: very subtle ember border for heated emphasis (active buttons,
+   highlighted items). The idea: steel that's been in the forge. */
+.border-ember {
+  border-color: var(--color-ember-border) !important;
+}
+
+.text-ember {
+  color: var(--color-ember) !important;
+}
+
+.bg-ember-faint {
+  background: var(--color-ember-faint);
+}
+
+.glow-ember {
+  box-shadow:
+    0 0 0 1px var(--color-ember-border),
+    0 0 24px -8px var(--color-ember-glow);
+}
+
+/* Focus ring: ember, not the default browser blue. */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-ember);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
-/* Scroll styling — subtle on dark. */
+/* Scrollbar — slim, steel. */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -53,13 +253,277 @@ body {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-border);
-  border-radius: 4px;
+  border-radius: 5px;
+  border: 2px solid var(--color-bg);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-border-hi);
 }
 
-/* react-diff-viewer ships its own palette — override to dark theme. */
+/* react-diff-viewer ships its own palette — keep dark. */
 .diff-host pre {
   background: transparent !important;
+}
+
+/* ─── Component utility classes ──────────────────────────────────────── */
+
+.pf-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.pf-card-hi {
+  background: var(--color-surface-hi);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.pf-command-deck {
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 106, 26, 0.08), transparent 24%),
+    linear-gradient(180deg, var(--color-surface-hi), var(--color-surface));
+  box-shadow: 0 22px 80px -54px var(--color-ember-glow);
+}
+
+.pf-command-deck::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(90deg, black, transparent 82%);
+  opacity: 0.7;
+}
+
+.pf-command-inner {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .pf-command-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+}
+
+.pf-heat-dial {
+  display: grid;
+  height: 116px;
+  width: 116px;
+  place-items: center;
+  border-radius: 999px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.32);
+}
+
+.pf-heat-dial::before {
+  content: "";
+  position: absolute;
+}
+
+.pf-heat-dial-core {
+  display: grid;
+  height: 84px;
+  width: 84px;
+  place-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-bg);
+}
+
+.pf-segment {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-dim);
+  padding: 0.4rem 0.75rem;
+  font-size: 12.5px;
+  transition:
+    background 150ms ease-out,
+    border-color 150ms ease-out,
+    color 150ms ease-out;
+}
+
+.pf-segment:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.pf-segment:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.pf-segment + .pf-segment {
+  margin-left: -1px;
+}
+
+.pf-segment:hover {
+  color: var(--color-text);
+  border-color: var(--color-border-hi);
+}
+
+.pf-segment.is-active {
+  color: var(--color-ember-hot);
+  border-color: var(--color-ember-border);
+  background: var(--color-ember-faint);
+  z-index: 1;
+}
+
+.pf-summary-tile {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent),
+    var(--color-surface);
+  padding: 0.875rem 1rem;
+}
+
+/* The "heat bar" — a vertical status stripe on the left edge of list rows
+   and cards. Replaces the flat status dot with something more confident.
+   Sized to meet WCAG non-text-contrast requirements on its own. */
+.pf-heatbar {
+  width: 3px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  align-self: stretch;
+}
+.pf-heatbar--pass {
+  background: var(--color-pass);
+  box-shadow: 0 0 12px -2px color-mix(in srgb, var(--color-pass) 60%, transparent);
+}
+.pf-heatbar--fail {
+  background: var(--color-ember);
+  box-shadow: 0 0 12px -2px var(--color-ember-glow);
+}
+.pf-heatbar--warn {
+  background: var(--color-warn);
+}
+.pf-heatbar--muted {
+  background: var(--color-border-hi);
+}
+
+/* Pill / chip used for git commit, config hash, provider names, etc. */
+.pf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 3px;
+  background: var(--color-surface-hi);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--color-text-dim);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.pf-chip--ember {
+  border-color: var(--color-ember-border);
+  color: var(--color-ember-hot);
+  background: var(--color-ember-faint);
+}
+
+/* Primary CTA — hairline ember border, heated on hover. */
+.pf-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-ember-border);
+  background: var(--color-ember-faint);
+  color: var(--color-ember-hot);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 160ms ease-out;
+}
+.pf-btn-primary:hover {
+  border-color: var(--color-ember);
+  background: color-mix(in srgb, var(--color-ember) 14%, transparent);
+  color: var(--color-ember-hot);
+  box-shadow: 0 0 24px -6px var(--color-ember-glow);
+}
+
+/* Secondary — steel outline. */
+.pf-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-dim);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 160ms ease-out;
+}
+.pf-btn-secondary:hover {
+  border-color: var(--color-border-hi);
+  background: var(--color-surface-hi);
+  color: var(--color-text);
+}
+
+/* Text input / select — precise, steel-framed. */
+.pf-input {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.4rem 0.75rem;
+  color: var(--color-text);
+  font-size: 13px;
+  transition: border-color 140ms ease-out;
+}
+.pf-input::placeholder {
+  color: var(--color-text-muted);
+}
+.pf-input:focus {
+  outline: none;
+  border-color: var(--color-ember);
+  box-shadow: 0 0 0 3px var(--color-ember-faint);
+}
+
+/* A subtle "forge-stamp" treatment for display numbers — the hero
+   digits in stat cards. Uses the condensed display font with tight
+   tracking for impact. */
+.pf-stat-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.pf-stat-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Page-level fade-in — subtle. Runs once per route. */
+@keyframes pf-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.pf-enter {
+  animation: pf-fade-in 280ms ease-out both;
 }

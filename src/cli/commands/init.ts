@@ -24,7 +24,7 @@ export async function initCommand(): Promise<number> {
   }
 
   console.log();
-  console.log(chalk.bold('🔥 PromptForge — project scaffolder'));
+  console.log(chalk.bold('🔥 PromptForge CLI — project scaffolder'));
   console.log(chalk.dim('   writing into ' + cwd));
   console.log();
 
@@ -107,7 +107,7 @@ export async function initCommand(): Promise<number> {
   }
 
   console.log();
-  console.log(chalk.green.bold('✓ PromptForge initialized.'));
+  console.log(chalk.green.bold('✓ PromptForge CLI initialized.'));
   if (written.length > 0) {
     console.log(chalk.dim('  wrote:'));
     for (const w of written) console.log(chalk.dim('    ' + w));
@@ -115,8 +115,8 @@ export async function initCommand(): Promise<number> {
 
   console.log();
   console.log(chalk.bold('Next steps'));
-  console.log(`  1. ${chalk.cyan('promptforge run')}`);
-  console.log(`  2. ${chalk.cyan('promptforge ui')}` + chalk.dim('   (web dashboard)'));
+  console.log(`  1. ${chalk.cyan('promptforge-cli run')}`);
+  console.log(`  2. ${chalk.cyan('promptforge-cli ui')}` + chalk.dim('   (web dashboard)'));
   if (providers.some((p) => p.startsWith('anthropic/'))) {
     console.log(chalk.dim(`     export ANTHROPIC_API_KEY=sk-ant-...`));
   }
@@ -161,15 +161,15 @@ interface ConfigArgs {
 
 function renderConfigFile({ testDir, providers }: ConfigArgs): string {
   const providersLiteral = providers.map((p) => `    '${p}'`).join(',\n');
-  // Intentionally no `import { defineConfig } from 'promptforge'` — that bare
-  // specifier only resolves when the user has promptforge in their local
+  // Intentionally no `import { defineConfig } from 'promptforge-cli'` — that bare
+  // specifier only resolves when the user has promptforge-cli in their local
   // node_modules. A globally-installed CLI can't resolve it from the user's
   // cwd, which would break the scaffolded flow. The config is validated with
   // Zod at runtime, so the plain object is sufficient. Users who want IDE
-  // autocomplete can `npm install --save-dev promptforge` and add:
-  //   import type { ProjectConfig } from 'promptforge';
+  // autocomplete can `npm install --save-dev promptforge-cli` and add:
+  //   import type { ProjectConfig } from 'promptforge-cli';
   //   const config: ProjectConfig = { ... };
-  return `// Run \`npm install --save-dev promptforge\` for IDE autocomplete on this object.
+  return `// Run \`npm install --save-dev promptforge-cli\` for IDE autocomplete on this object.
 export default {
   testDir: '${testDir}',
   providers: {
@@ -217,7 +217,7 @@ async function ensureGitignore(cwd: string): Promise<boolean> {
   const existing = await readFile(gitignorePath, 'utf8').catch(() => '');
   const lines = existing.split(/\r?\n/);
   const needs: string[] = [];
-  for (const entry of ['.promptforge/', 'promptforge-results.xml']) {
+  for (const entry of ['.promptforge/', 'promptforge-cli-results.xml']) {
     if (!lines.some((l) => l.trim() === entry)) needs.push(entry);
   }
   if (needs.length === 0) return false;

@@ -2,7 +2,7 @@
 
 Record at 1080p with OBS (free) or QuickTime. Upload as **unlisted** to
 YouTube. Embed in README and `docs/index.html`. Add auto-captions, then
-review and correct them — auto-captions mangle "promptforge" and
+review and correct them — auto-captions mangle "PromptForge CLI" and
 "assertion" every time.
 
 Total length: **under 120 seconds**. Scripted, not ad-libbed.
@@ -14,7 +14,7 @@ Total length: **under 120 seconds**. Scripted, not ad-libbed.
 **On screen**: terminal, full-screen, dark theme.
 
 **Voiceover**:
-> "This is PromptForge. It's Jest for prompts — a testing framework
+> "This is PromptForge CLI. It's Jest for prompts — a testing framework
 > that catches LLM regressions before they hit production. Let me show
 > you in under two minutes."
 
@@ -31,7 +31,7 @@ rm -rf .promptforge prompts promptforge.config.ts
 > "First, scaffold a project."
 
 ```bash
-promptforge init
+promptforge-cli init
 ```
 
 Accept the defaults. Show the four prompts briefly; don't linger.
@@ -42,7 +42,7 @@ Accept the defaults. Show the four prompts briefly; don't linger.
 > single API key."
 
 ```bash
-promptforge run
+promptforge-cli run
 ```
 
 Show the clean green pass.
@@ -58,19 +58,19 @@ Open `prompts/hello.test.yaml` in a visible editor. Change
 `mockOutput` from the working greeting to a junk string.
 
 ```bash
-promptforge run
+promptforge-cli run
 ```
 
 Show the FAIL SUMMARY box with expected/received.
 
 **Voiceover**:
-> "PromptForge boxes the failure with the exact diagnostic — expected,
+> "PromptForge CLI boxes the failure with the exact diagnostic — expected,
 > received, assertion type. And because every run is recorded to a
 > local SQLite database, it also flags this as a regression against
 > the previous run."
 
 ```bash
-promptforge compare previous latest
+promptforge-cli compare previous latest
 ```
 
 Show the unified diff + cost delta.
@@ -83,7 +83,7 @@ Show the unified diff + cost delta.
 > "For iteration, there's watch mode."
 
 ```bash
-promptforge watch
+promptforge-cli watch
 ```
 
 Fix the `mockOutput` in the editor, save. Watch the screen clear and
@@ -101,7 +101,7 @@ Press `q` to quit.
 ## Scene 5 — Dashboard (1:25–1:50)
 
 ```bash
-promptforge ui
+promptforge-cli ui
 ```
 
 Browser opens to `http://127.0.0.1:3939`.
@@ -129,18 +129,18 @@ Return to terminal.
 > built in one week. Link below — give it a star if it's useful."
 
 ```bash
-npm install -g promptforge
+npm install -g promptforge-cli
 ```
 
 **On screen**: final frame with the install command + a "GitHub:
-github.com/ManeeshJupalle/PromptForge" overlay.
+github.com/ManeeshJupalle/promptforge-cli" overlay.
 
 ---
 
 ## Captions checklist
 
 - [ ] Upload captures, wait for auto-captions.
-- [ ] Open YouTube Studio → Subtitles → edit. Fix "promptforge",
+- [ ] Open YouTube Studio → Subtitles → edit. Fix "PromptForge CLI",
       "assertion", "snapshot", "provider", "regression" — every time.
 - [ ] Download the corrected SRT and commit to `docs/captions.srt`.
 - [ ] Add to the README with `<details><summary>Transcript</summary>`.

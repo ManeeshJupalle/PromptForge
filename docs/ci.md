@@ -1,6 +1,6 @@
 # CI integration
 
-PromptForge is designed to run in CI as cleanly as it runs on your laptop.
+PromptForge CLI is designed to run in CI as cleanly as it runs on your laptop.
 
 ## Principles
 
@@ -37,7 +37,7 @@ jobs:
       - run: npm ci
 
       - name: Run prompt tests
-        run: npx promptforge run --reporter junit --no-record
+        run: npx promptforge-cli run --reporter junit --no-record
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}
@@ -46,15 +46,15 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: promptforge-results
-          path: promptforge-results.xml
+          name: promptforge-cli-results
+          path: promptforge-cli-results.xml
 
       - name: Publish to checks UI
         if: always()
         uses: dorny/test-reporter@v1
         with:
           name: Prompt tests
-          path: promptforge-results.xml
+          path: promptforge-cli-results.xml
           reporter: java-junit
 ```
 
@@ -75,13 +75,13 @@ prompt-tests:
     NODE_OPTIONS: "--no-warnings=ExperimentalWarning"
   script:
     - npm ci
-    - npx promptforge run --reporter junit --no-record
+    - npx promptforge-cli run --reporter junit --no-record
   artifacts:
     when: always
     reports:
-      junit: promptforge-results.xml
+      junit: promptforge-cli-results.xml
     paths:
-      - promptforge-results.xml
+      - promptforge-cli-results.xml
 ```
 
 ## Cost + performance in CI
@@ -96,7 +96,7 @@ prompt-tests:
 
 ```bash
 # Full run summary for custom scorekeeping.
-npx promptforge run --reporter json --no-record > results.json
+npx promptforge-cli run --reporter json --no-record > results.json
 
 # Parse with jq:
 jq '.regressions | length' results.json

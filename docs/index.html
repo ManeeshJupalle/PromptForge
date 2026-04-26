@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PromptForge — Jest for prompts</title>
+    <title>PromptForge CLI — Jest for prompts</title>
     <meta
       name="description"
       content="Local-first, multi-provider testing framework for LLM apps. Write assertions, catch regressions, ship with confidence."
     />
-    <meta property="og:title" content="PromptForge — Jest for prompts" />
+    <meta property="og:title" content="PromptForge CLI — Jest for prompts" />
     <meta
       property="og:description"
       content="Local-first, multi-provider testing framework for LLM apps."
@@ -110,7 +110,7 @@
       >
         <a href="#top" class="flex items-baseline gap-2">
           <span class="display text-lg font-semibold tracking-tight">
-            🔥 PromptForge
+            🔥 PromptForge CLI
           </span>
           <span class="mono text-xs text-[#71717a]">v0.1.0</span>
         </a>
@@ -120,7 +120,7 @@
           <a href="#dashboard" class="hover:text-white">Dashboard</a>
           <a href="getting-started.md" class="hover:text-white">Docs</a>
           <a
-            href="https://github.com/ManeeshJupalle/PromptForge"
+            href="https://github.com/ManeeshJupalle/promptforge-cli"
             class="rounded border border-[#27272a] bg-[#18181b] px-3 py-1 hover:border-[#3b82f6]"
             >GitHub ↗</a
           >
@@ -143,7 +143,7 @@
         <p
           class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#a1a1aa]"
         >
-          PromptForge is Jest for prompts. Write assertions before you
+          PromptForge CLI is Jest for prompts. Write assertions before you
           ship, catch regressions the moment a model update or a prompt
           tweak silently breaks an answer. Runs locally. Tests your
           prompts against Anthropic, OpenAI, Gemini, and Ollama from the
@@ -151,13 +151,13 @@
         </p>
 
         <div class="relative mx-auto mt-10 max-w-xl">
-          <pre class="code text-left"><code><span class="tok-cmd">$</span> npm install -g promptforge
+          <pre class="code text-left"><code><span class="tok-cmd">$</span> npm install -g promptforge-cli
 <span class="tok-cmd">$</span> cd my-llm-project
-<span class="tok-cmd">$</span> promptforge init
-<span class="tok-cmd">$</span> promptforge run</code></pre>
+<span class="tok-cmd">$</span> promptforge-cli init
+<span class="tok-cmd">$</span> promptforge-cli run</code></pre>
           <button
             class="copy-btn"
-            onclick="navigator.clipboard.writeText('npm install -g promptforge');this.innerText='copied ✓';setTimeout(()=>this.innerText='copy',1500)"
+            onclick="navigator.clipboard.writeText('npm install -g promptforge-cli');this.innerText='copied ✓';setTimeout(()=>this.innerText='copy',1500)"
           >
             copy
           </button>
@@ -165,7 +165,7 @@
 
         <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
           <a
-            href="https://github.com/ManeeshJupalle/PromptForge"
+            href="https://github.com/ManeeshJupalle/promptforge-cli"
             class="rounded-md bg-[#3b82f6] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#2563eb]"
             >⭐ Star on GitHub</a
           >
@@ -189,12 +189,12 @@
             <div class="h-3 w-3 rounded-full bg-[#fbbf24]/80"></div>
             <div class="h-3 w-3 rounded-full bg-[#10b981]/80"></div>
             <span class="mono ml-4 text-xs text-[#71717a]"
-              >promptforge run</span
+              >promptforge-cli run</span
             >
           </div>
           <!-- Replace this static terminal with an actual GIF via <img> once recorded. -->
-          <!-- <img src="images/demo.gif" alt="PromptForge catching a regression in action" /> -->
-          <pre class="mono overflow-x-auto p-6 text-[13px] leading-relaxed"><span class="tok-accent">🧪 PromptForge v0.1.0</span>
+          <!-- <img src="images/demo.gif" alt="PromptForge CLI catching a regression in action" /> -->
+          <pre class="mono overflow-x-auto p-6 text-[13px] leading-relaxed"><span class="tok-accent">🧪 PromptForge CLI v0.1.0</span>
 
 <span class="tok-dim">→</span> <span class="tok-dim">prompts/triage.test.yaml</span>
   <span class="tok-pass">✓</span> classifies billing complaint <span class="tok-dim">(anthropic/claude-sonnet-4-6) 412ms $0.0008</span>
@@ -222,7 +222,7 @@
 <span class="tok-accent">Duration</span>  <span class="tok-dim">1.2s</span>
 <span class="tok-accent">Run</span>       <span class="tok-accent">kf8c-Qx2Vm</span>
 
-<span class="tok-dim">run `promptforge ui` to investigate →</span></pre>
+<span class="tok-dim">run `promptforge-cli ui` to investigate →</span></pre>
         </div>
       </div>
     </section>
@@ -236,7 +236,7 @@
           Built for teams shipping LLM features
         </h2>
         <p class="mt-3 text-center text-[#a1a1aa]">
-          Four things PromptForge gets right that ad-hoc Jest tests don't.
+          Four things PromptForge CLI gets right that ad-hoc Jest tests don't.
         </p>
         <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <FeatureCard
@@ -316,14 +316,14 @@
           <div>
             <div class="mb-2 flex items-center justify-between">
               <span class="mono text-xs text-[#71717a]"
-                >$ promptforge run</span
+                >$ promptforge-cli run</span
               >
               <span
                 class="mono rounded border border-[#27272a] bg-[#18181b] px-2 py-0.5 text-[10px] text-[#a1a1aa]"
                 >output</span
               >
             </div>
-            <pre class="code text-[12px]"><code><span class="tok-accent">🧪 PromptForge v0.1.0</span>
+            <pre class="code text-[12px]"><code><span class="tok-accent">🧪 PromptForge CLI v0.1.0</span>
 
 <span class="tok-dim">→ prompts/triage.test.yaml</span>
   <span class="tok-pass">✓</span> billing complaint <span class="tok-dim">(anthropic) 412ms $0.0008</span>
@@ -339,7 +339,7 @@
 <span class="tok-accent">Run</span>       <span class="tok-accent">kf8c-Qx2Vm</span>
 
 <span class="tok-dim"># Change a prompt, re-run, see the delta:</span>
-<span class="tok-cmd">$</span> promptforge compare previous latest
+<span class="tok-cmd">$</span> promptforge-cli compare previous latest
 
 <span class="tok-fail">Regressions (1)</span>
   <span class="tok-fail">✗</span> billing complaint <span class="tok-dim">(ollama)</span>
@@ -401,19 +401,19 @@
           No cloud signup, no SDK wiring. Just the four commands.
         </p>
         <pre class="code mt-8 text-left"><code><span class="tok-dim"># 1. install globally (or as a dev dep)</span>
-<span class="tok-cmd">$</span> npm install -g promptforge
+<span class="tok-cmd">$</span> npm install -g promptforge-cli
 
 <span class="tok-dim"># 2. scaffold your project</span>
 <span class="tok-cmd">$</span> cd your-llm-project
-<span class="tok-cmd">$</span> promptforge init
+<span class="tok-cmd">$</span> promptforge-cli init
 
 <span class="tok-dim"># 3. run the example that init created (zero API keys needed)</span>
-<span class="tok-cmd">$</span> promptforge run
+<span class="tok-cmd">$</span> promptforge-cli run
 <span class="tok-out">✓ greets by name (mock) 0ms</span>
 <span class="tok-out">Tests     1 passed, 1 total</span>
 
 <span class="tok-dim"># 4. open the dashboard</span>
-<span class="tok-cmd">$</span> promptforge ui
+<span class="tok-cmd">$</span> promptforge-cli ui
 <span class="tok-out">→ http://127.0.0.1:3939</span></code></pre>
       </div>
     </section>
@@ -424,18 +424,18 @@
         class="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 md:flex-row md:justify-between"
       >
         <div class="text-sm text-[#71717a]">
-          PromptForge is open source, MIT-licensed. Built in one week,
+          PromptForge CLI is open source, MIT-licensed. Built in one week,
           shipped April 2026.
         </div>
         <div class="flex gap-5 text-sm text-[#a1a1aa]">
-          <a href="https://github.com/ManeeshJupalle/PromptForge" class="hover:text-white">GitHub</a>
-          <a href="https://www.npmjs.com/package/promptforge" class="hover:text-white">npm</a>
+          <a href="https://github.com/ManeeshJupalle/promptforge-cli" class="hover:text-white">GitHub</a>
+          <a href="https://www.npmjs.com/package/promptforge-cli" class="hover:text-white">npm</a>
           <a href="getting-started.md" class="hover:text-white">Docs</a>
           <a href="#privacy" class="hover:text-white">Privacy</a>
         </div>
       </div>
       <div id="privacy" class="mx-auto mt-6 max-w-3xl px-6 text-xs text-[#52525b]">
-        <strong class="text-[#71717a]">Privacy:</strong> PromptForge runs
+        <strong class="text-[#71717a]">Privacy:</strong> PromptForge CLI runs
         entirely on your machine. The dashboard binds to 127.0.0.1.
         Google Fonts is the only remote fetch (fonts only). No
         telemetry, no analytics, no phone-home. Your prompts, test

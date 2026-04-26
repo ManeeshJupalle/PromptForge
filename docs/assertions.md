@@ -1,6 +1,6 @@
 # Assertions
 
-PromptForge ships ten assertion types. Every assertion returns
+PromptForge CLI ships ten assertion types. Every assertion returns
 `{ passed: boolean, message?: string, details?: Record<string, unknown> }`
 at runtime. The `details` shape for each type is documented below — the
 dashboard renders these fields in the failure view.
@@ -40,7 +40,7 @@ Use the `flags` field — ECMAScript regex doesn't support inline `(?i)`.
 ## `jsonSchema`
 
 Validate the output as JSON against a JSON Schema. Uses [Ajv](https://ajv.js.org/)
-under the hood. If the output isn't pure JSON, PromptForge tries to extract
+under the hood. If the output isn't pure JSON, PromptForge CLI tries to extract
 the first balanced `{…}` or `[…]` block.
 
 ```yaml
@@ -94,7 +94,7 @@ score 1–5 with a one-sentence reasoning. Fails if `score < threshold`.
   threshold: 4                             # optional; default 4
 ```
 
-If `judgeModel` is omitted, PromptForge picks the cheapest non-`mock`
+If `judgeModel` is omitted, PromptForge CLI picks the cheapest non-`mock`
 provider listed in the suite (Ollama ranks above paid providers because
 it's free). Mock is never auto-selected — a mock-only suite with
 `llmJudge` and no explicit `judgeModel` fails with a clear error telling
@@ -126,13 +126,13 @@ Snapshots persist in `.promptforge/db.sqlite` (SQLite `snapshots` table).
 Update a snapshot after an intentional change:
 
 ```bash
-promptforge snapshot --update --filter "some test name"
+promptforge-cli snapshot --update --filter "some test name"
 ```
 
 Clear one:
 
 ```bash
-promptforge snapshot --clear "some pattern"
+promptforge-cli snapshot --clear "some pattern"
 ```
 
 `details` on failure: `{ similarity, threshold, stored, received }`.
@@ -173,7 +173,7 @@ Function-valued assertion. Only works in `.test.ts` files — YAML can't
 serialize functions.
 
 ```typescript
-import { defineTestSuite } from 'promptforge';
+import { defineTestSuite } from 'promptforge-cli';
 
 export default defineTestSuite({
   prompt: './triage.md',

@@ -20,7 +20,7 @@ export async function compareCommand(aRef: string, bRef: string): Promise<number
   } catch (err) {
     if (err instanceof RunNotFoundError) {
       console.error(chalk.red(`No run found for "${err.ref}".`));
-      console.error(chalk.dim('Use a run ID, or "latest" / "previous".'));
+      console.error(chalk.dim('Use a run ID, "latest", "previous", or "previous:<runId>".'));
       return 1;
     }
     throw err;

@@ -13,23 +13,23 @@ window without chrome).
 ```bash
 # Work from a project with reasonable history — the examples/ directory
 # is perfect because it exercises every assertion type.
-cd /path/to/promptforge
+cd /path/to/promptforge-cli
 rm -rf .promptforge
 npm run build
 
 # Generate a few runs so the dashboard has data to render.
-node ./bin/promptforge run examples/customer-support
-node ./bin/promptforge run examples/code-review
-node ./bin/promptforge run examples/extraction
+node ./bin/promptforge-cli run examples/customer-support
+node ./bin/promptforge-cli run examples/code-review
+node ./bin/promptforge-cli run examples/extraction
 
 # Introduce one regression for the compare shot.
 sed -i '' 's/billing/blling/' examples/customer-support/triage.test.yaml
-node ./bin/promptforge run examples/customer-support
+node ./bin/promptforge-cli run examples/customer-support
 # Revert so the repo stays clean.
 git checkout examples/customer-support/triage.test.yaml
 
 # Launch the dashboard.
-node ./bin/promptforge ui --port 3939
+node ./bin/promptforge-cli ui --port 3939
 ```
 
 ## Screenshots to take

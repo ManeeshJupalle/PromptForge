@@ -11,7 +11,7 @@ import { watchCommand } from './commands/watch.js';
 const program = new Command();
 
 program
-  .name('promptforge')
+  .name('promptforge-cli')
   .description('Testing framework for LLM prompts')
   .version('0.1.0');
 
@@ -88,7 +88,7 @@ program
 program
   .command('compare <a> <b>')
   .description(
-    'Diff two runs. <a> and <b> accept run IDs, "latest", or "previous" (e.g. `compare previous latest`).',
+    'Diff two runs. <a> and <b> accept run IDs, "latest", "previous", or "previous:<runId>".',
   )
   .action(async (a: string, b: string) => {
     process.exitCode = await compareCommand(a, b);
@@ -105,7 +105,7 @@ program
 
 program
   .command('init')
-  .description('Scaffold a new PromptForge project in the current directory')
+  .description('Scaffold a new PromptForge CLI project in the current directory')
   .action(async () => {
     process.exitCode = await initCommand();
   });

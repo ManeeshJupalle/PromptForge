@@ -1,14 +1,14 @@
 # v0.1.0 — Initial release
 
-PromptForge is Jest for prompts. Write assertions, catch regressions,
+PromptForge CLI is Jest for prompts. Write assertions, catch regressions,
 ship LLM features with confidence. Built in one week.
 
 ## Install
 
 ```
-npm install -g promptforge
-promptforge init
-promptforge run
+npm install -g promptforge-cli
+promptforge-cli init
+promptforge-cli run
 ```
 
 Requires Node 20+.
@@ -21,7 +21,7 @@ Requires Node 20+.
 - **5 providers**: Anthropic, OpenAI, Gemini, Ollama, Mock — same test
   file runs against all of them.
 - **Run history + compare**: every run recorded to local SQLite.
-  `promptforge compare previous latest` shows regressions,
+  `promptforge-cli compare previous latest` shows regressions,
   improvements, output diffs, cost + latency deltas.
 - **Self-hostable dashboard**: Vite + React + Hono SPA bound to
   127.0.0.1. Run list, run detail, compare, trends, test explorer.

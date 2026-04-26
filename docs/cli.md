@@ -1,15 +1,15 @@
 # CLI reference
 
 ```
-promptforge <command> [options]
+promptforge-cli <command> [options]
 ```
 
-Run `promptforge --help` for the auto-generated short form, or
-`promptforge <command> --help` for per-command flags.
+Run `promptforge-cli --help` for the auto-generated short form, or
+`promptforge-cli <command> --help` for per-command flags.
 
 ---
 
-## `promptforge run [paths...]`
+## `promptforge-cli run [paths...]`
 
 Execute tests. Records the run to `.promptforge/db.sqlite` unless
 `--no-record` is set.
@@ -19,7 +19,7 @@ Execute tests. Records the run to `.promptforge/db.sqlite` unless
 | `-f, --filter <pattern>` | Only run tests whose name includes `<pattern>`. |
 | `-p, --provider <name>` | Only run providers matching `<name>` (substring). |
 | `-r, --reporter <kind>` | `cli` (default), `json`, or `junit`. |
-| `-o, --output <path>` | Output file for the `junit` reporter. Default `promptforge-results.xml`. |
+| `-o, --output <path>` | Output file for the `junit` reporter. Default `promptforge-cli-results.xml`. |
 | `--no-record` | Skip DB writes. Regression detection becomes a no-op. |
 | `--update-snapshots` | Accept current outputs as new golden snapshots during the run. |
 
@@ -28,7 +28,7 @@ from the cwd.
 
 ---
 
-## `promptforge watch [paths...]`
+## `promptforge-cli watch [paths...]`
 
 Re-run tests on change. Interactive keys:
 
@@ -50,7 +50,7 @@ SQLite by default (opt in with `--record`).
 
 ---
 
-## `promptforge init`
+## `promptforge-cli init`
 
 Interactive scaffolder. Four questions:
 
@@ -64,7 +64,7 @@ Skip / Overwrite / Backup prompt.
 
 ---
 
-## `promptforge ui`
+## `promptforge-cli ui`
 
 Launch the dashboard. Binds to `127.0.0.1` only.
 
@@ -75,21 +75,23 @@ Launch the dashboard. Binds to `127.0.0.1` only.
 
 Reads `.promptforge/db.sqlite` in the current directory. Dashboard
 assets are served from the installed package's `dist/dashboard/`
-directory — this works whether PromptForge is installed globally,
+directory — this works whether PromptForge CLI is installed globally,
 locally, or linked.
 
 ---
 
-## `promptforge compare <a> <b>`
+## `promptforge-cli compare <a> <b>`
 
 Diff two runs. `<a>` and `<b>` accept:
 
 - Run IDs (e.g. `V1StGXR8_Z`)
 - `latest` — most recent completed run
 - `previous` — the run before the latest
+- `previous:<runId>` - the completed run before a specific run
 
 ```bash
-promptforge compare previous latest
+promptforge-cli compare previous latest
+promptforge-cli compare previous:V1StGXR8_Z V1StGXR8_Z
 ```
 
 Output groups tests by status: Regressions, Improvements, Unchanged
@@ -98,7 +100,7 @@ cost + latency deltas.
 
 ---
 
-## `promptforge snapshot`
+## `promptforge-cli snapshot`
 
 Manage golden snapshots stored in the SQLite `snapshots` table.
 
@@ -112,7 +114,7 @@ Manage golden snapshots stored in the SQLite `snapshots` table.
 
 ---
 
-## `promptforge list [paths...]`
+## `promptforge-cli list [paths...]`
 
 Show every discovered test file and the cases inside. Useful for
 verifying `prompt:` paths resolve and that filters / globs match what

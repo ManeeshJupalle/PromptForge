@@ -240,7 +240,7 @@ async function loadPromptFile(promptPath: string, suiteFile: string): Promise<st
     // Day 6 — more actionable error message. Points at the exact resolved
     // path and suggests the discovery command so users can cross-check.
     throw new Error(
-      `prompt file not found at ${abs} — check the \`prompt:\` field in the test suite or run \`promptforge list\` to inspect discovery. (${(err as Error).message})`,
+      `prompt file not found at ${abs} — check the \`prompt:\` field in the test suite or run \`promptforge-cli list\` to inspect discovery. (${(err as Error).message})`,
     );
   }
 }

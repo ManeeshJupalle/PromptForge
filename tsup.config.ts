@@ -1,9 +1,9 @@
 import { defineConfig } from 'tsup';
 
 // Two entries now (Day 4):
-//   dist/cli.js    — CLI bundle, referenced by bin/promptforge
+//   dist/cli.js    — CLI bundle, referenced by bin/promptforge-cli
 //   dist/index.js  — library bundle exporting defineTestSuite + types for
-//                    .test.ts files that `import { defineTestSuite } from 'promptforge'`
+//                    .test.ts files that `import { defineTestSuite } from 'promptforge-cli'`
 // Splitting stays off because the library bundle is tiny (identity function +
 // type re-exports) and de-duplication buys very little.
 export default defineConfig({

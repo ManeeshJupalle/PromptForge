@@ -66,7 +66,9 @@ export function getPreviousRunId(db: Database, currentRunId: string): string | n
   return row?.id ?? null;
 }
 
-// Resolves 'latest', 'previous', or a literal run ID to a run row.
+// Resolves 'latest', 'previous', 'previous:<runId>', or a literal run ID to a
+// run row. The scoped previous form keeps dashboard comparisons relative to
+// the run being viewed instead of always comparing against the latest run.
 export function resolveRunRef(db: Database, ref: string): RunRow | null {
   if (ref === 'latest') {
     const id = getLatestRunId(db);
@@ -76,6 +78,12 @@ export function resolveRunRef(db: Database, ref: string): RunRow | null {
     const latestId = getLatestRunId(db);
     if (!latestId) return null;
     const prevId = getPreviousRunId(db, latestId);
+    return prevId ? getRun(db, prevId) : null;
+  }
+  if (ref.startsWith('previous:')) {
+    const currentId = ref.slice('previous:'.length);
+    if (!currentId) return null;
+    const prevId = getPreviousRunId(db, currentId);
     return prevId ? getRun(db, prevId) : null;
   }
   return getRun(db, ref);
@@ -305,16 +313,19 @@ export function listDailyRunAggregates(db: Database): DailyRunAggregate[] {
 export interface LatencyPoint {
   day: string;
   latency_ms: number;
+  provider: string;
 }
 
 export function listDailyLatencies(db: Database): LatencyPoint[] {
   return db
     .prepare(
       `SELECT strftime('%Y-%m-%d', runs.started_at / 1000, 'unixepoch') AS day,
-              results.latency_ms
+              results.latency_ms,
+              results.provider
        FROM results
        JOIN runs ON runs.id = results.run_id
-       WHERE results.latency_ms IS NOT NULL`,
+       WHERE results.latency_ms IS NOT NULL
+         AND runs.finished_at IS NOT NULL`,
     )
     .all() as LatencyPoint[];
 }
@@ -352,9 +363,9 @@ export function listRunsFiltered(db: Database, f: RunsFilter = {}): RunRow[] {
     // literal substring — the dashboard filter is documented as a substring
     // match, so `_` should match a literal underscore, not any single char.
     clauses.push(
-      `EXISTS (SELECT 1 FROM results r WHERE r.run_id = runs.id AND r.provider LIKE ? ESCAPE '\\')`,
+      `EXISTS (SELECT 1 FROM results r WHERE r.run_id = runs.id AND LOWER(r.provider) LIKE ? ESCAPE '\\')`,
     );
-    params.push(`%${escapeLikePattern(f.provider)}%`);
+    params.push(`%${escapeLikePattern(f.provider.toLowerCase())}%`);
   }
   if (f.status === 'pass') {
     clauses.push(`failed = 0`);

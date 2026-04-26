@@ -17,7 +17,7 @@ thinking about LLM reliability.
 > culprit. An empathy-tuned refund reply gets cost-optimized into a
 > one-liner, and support tickets quietly climb.
 >
-> Over the last week I built PromptForge — an open-source testing
+> Over the last week I built PromptForge CLI — an open-source testing
 > framework designed to catch these regressions the way Jest catches
 > JavaScript ones.
 >
@@ -30,13 +30,13 @@ thinking about LLM reliability.
 >    snapshot drift detection, and LLM-as-judge scoring
 > → First-class CI integration via JUnit + JSON reporters
 >
-> It's v0.1.0, MIT-licensed, installable with `npm i -g promptforge`.
+> It's v0.1.0, MIT-licensed, installable with `npm i -g promptforge-cli`.
 >
 > I'd especially love feedback from teams already shipping LLM
 > features in production. What regression patterns am I missing?
 > What's the one assertion type you wish existed?
 >
-> Repo: github.com/ManeeshJupalle/PromptForge
+> Repo: github.com/ManeeshJupalle/promptforge-cli
 > Docs: <landing page URL>
 >
 > #AI #LLM #OpenSource #DeveloperTools #Testing
@@ -54,7 +54,7 @@ thinking about LLM reliability.
 - Don't post on a weekend. Tuesday 9-11 AM or Wednesday 11 AM-1 PM in
   your primary audience's timezone.
 - **Before posting**: update your LinkedIn headline to include
-  "Built PromptForge (MIT, open source)" — visitors from the post
+  "Built PromptForge CLI (MIT, open source)" — visitors from the post
   check the headline, and a working link back closes the loop.
 
 ## If anyone asks about hiring

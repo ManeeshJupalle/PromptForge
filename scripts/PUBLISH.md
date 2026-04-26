@@ -6,12 +6,12 @@ Don't copy-paste blind. Each step has a *why* — skip at your own risk.
 
 ### 1. Replace repository placeholders — **done**
 
-All repo URLs point at `https://github.com/ManeeshJupalle/PromptForge`.
+All repo URLs point at `https://github.com/ManeeshJupalle/promptforge-cli`.
 If you ever fork/rename, the sweep is:
 
 ```bash
-grep -rln "ManeeshJupalle/PromptForge" . --exclude-dir=node_modules --exclude-dir=dist \
-  | xargs sed -i 's|ManeeshJupalle/PromptForge|<new-owner>/<new-repo>|g'
+grep -rln "ManeeshJupalle/promptforge-cli" . --exclude-dir=node_modules --exclude-dir=dist \
+  | xargs sed -i 's|ManeeshJupalle/promptforge-cli|<new-owner>/<new-repo>|g'
 ```
 
 ### 2. Confirm version and author
@@ -55,15 +55,15 @@ add `"dist/**"` to `package.json`'s `files` array.
 ```bash
 npm pack
 TMPDIR=$(mktemp -d)
-cp promptforge-0.1.0.tgz "$TMPDIR/"
+cp promptforge-cli-0.1.0.tgz "$TMPDIR/"
 cd "$TMPDIR"
 npm init -y
-npm install --save-dev ./promptforge-0.1.0.tgz
-npx promptforge run --no-record   # should no-op ('No *.test.yaml … found.')
+npm install --save-dev ./promptforge-cli-0.1.0.tgz
+npx promptforge-cli run --no-record   # should no-op ('No *.test.yaml … found.')
 # Generate a scaffold, run it, open the UI briefly.
-echo "q" | npx promptforge init   # Or skip if interactive prompts are a pain on CI
-npx promptforge run
-npx promptforge ui --no-open &
+echo "q" | npx promptforge-cli init   # Or skip if interactive prompts are a pain on CI
+npx promptforge-cli run
+npx promptforge-cli ui --no-open &
 sleep 2
 curl -sf http://127.0.0.1:3939/api/health
 kill %1
@@ -78,8 +78,8 @@ command produces a passing test — tarball is good to publish.
 # Make sure you're logged in to npm with the account that owns (or will own) the name.
 npm whoami
 
-# Check the name isn't taken; if it is, decide: promptforge-testing, @<scope>/promptforge, etc.
-npm view promptforge 2>&1 | head
+# Check the name isn't taken; if it is, decide: promptforge-cli-testing, @<scope>/promptforge-cli, etc.
+npm view promptforge-cli 2>&1 | head
 
 # Publish public.
 npm publish --access public
@@ -99,7 +99,7 @@ gh release create v0.1.0 \
   docs/images/demo.gif
 
 # Enable GitHub Pages from /docs on the main branch (Settings → Pages).
-# The landing page goes live at https://maneeshjupalle.github.io/PromptForge/.
+# The landing page goes live at https://maneeshjupalle.github.io/promptforge-cli/.
 ```
 
 ## Launch coordination
@@ -119,6 +119,6 @@ If something is broken post-publish:
 
 ```bash
 # Deprecate rather than unpublish (npm frowns on unpublish for anything older than 72h).
-npm deprecate promptforge@0.1.0 "v0.1.0 has a critical bug; please wait for v0.1.1"
+npm deprecate promptforge-cli@0.1.0 "v0.1.0 has a critical bug; please wait for v0.1.1"
 # Fix, bump to 0.1.1, republish.
 ```

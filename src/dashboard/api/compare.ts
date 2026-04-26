@@ -9,7 +9,13 @@ export function compareRoute(db: Database): Hono {
     const a = c.req.query('a');
     const b = c.req.query('b');
     if (!a || !b) {
-      return c.json({ error: 'compare requires ?a=...&b=... (run IDs, "latest", or "previous")' }, 400);
+      return c.json(
+        {
+          error:
+            'compare requires ?a=...&b=... (run IDs, "latest", "previous", or "previous:<runId>")',
+        },
+        400,
+      );
     }
     try {
       return c.json(compareRuns(db, a, b));

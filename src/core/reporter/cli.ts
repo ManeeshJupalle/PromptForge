@@ -78,7 +78,7 @@ export class CliReporter {
     // Header printed eagerly so output reads top-down even if the first
     // provider call is slow. Not part of the spinner life cycle.
     console.log();
-    console.log(chalk.bold('🧪 PromptForge v0.1.0'));
+    console.log(chalk.bold('🧪 PromptForge CLI v0.1.0'));
     console.log();
   }
 
@@ -192,7 +192,7 @@ export class CliReporter {
     for (const reg of summary.regressions) {
       console.log(`  ${chalk.red('✗')} ${reg.testName} ${chalk.dim(`(${reg.provider})`)}`);
     }
-    console.log(chalk.dim(`  run \`promptforge compare previous latest\` for details`));
+    console.log(chalk.dim(`  run \`promptforge-cli compare previous latest\` for details`));
   }
 
   private printFooter(summary: RunSummary): void {

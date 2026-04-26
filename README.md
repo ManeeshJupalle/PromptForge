@@ -1,14 +1,14 @@
 <div align="center">
 
-# 🔥 PromptForge
+# 🔥 PromptForge CLI
 
 **Jest for prompts.**
 
 Test-driven prompting for teams shipping LLM features. Local-first. Multi-provider. Self-hostable dashboard.
 
-[![npm](https://img.shields.io/npm/v/promptforge.svg?color=3B82F6)](https://www.npmjs.com/package/promptforge)
-[![license](https://img.shields.io/npm/l/promptforge.svg?color=3B82F6)](./LICENSE)
-[![node](https://img.shields.io/node/v/promptforge.svg?color=3B82F6)](https://nodejs.org)
+[![npm](https://img.shields.io/npm/v/promptforge-cli.svg?color=3B82F6)](https://www.npmjs.com/package/promptforge-cli)
+[![license](https://img.shields.io/npm/l/promptforge-cli.svg?color=3B82F6)](./LICENSE)
+[![node](https://img.shields.io/node/v/promptforge-cli.svg?color=3B82F6)](https://nodejs.org)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3B82F6)
 
 <!-- Demo GIF goes here once recorded (see scripts/demo.tape). -->
@@ -17,7 +17,7 @@ Test-driven prompting for teams shipping LLM features. Local-first. Multi-provid
 
 ---
 
-## Why PromptForge
+## Why PromptForge CLI
 
 - **Test-driven prompting.** Write assertions before you ship a prompt.
   Catch regressions the moment a model update or a prompt tweak silently
@@ -33,12 +33,12 @@ Test-driven prompting for teams shipping LLM features. Local-first. Multi-provid
 ## 30-second quick start
 
 ```bash
-npm install -g promptforge
+npm install -g promptforge-cli
 
 cd my-llm-project
-promptforge init              # interactive scaffolder
-promptforge run               # execute tests
-promptforge ui                # open the dashboard
+promptforge-cli init              # interactive scaffolder
+promptforge-cli run               # execute tests
+promptforge-cli ui                # open the dashboard
 ```
 
 ## A realistic test file
@@ -80,9 +80,9 @@ tests:
 Run it:
 
 ```
-$ promptforge run
+$ promptforge-cli run
 
-🧪 PromptForge v0.1.0
+🧪 PromptForge CLI v0.1.0
 
 → prompts/triage.test.yaml
   ✓ classifies billing complaint (anthropic/claude-sonnet-4-6) 412ms $0.0008
@@ -114,7 +114,7 @@ Cost
 Duration  1.2s
 Run       kf8c-Qx2Vm
 
-Run `promptforge ui` to investigate →
+Run `promptforge-cli ui` to investigate →
 ```
 
 ## What's in the box
@@ -148,19 +148,19 @@ Run `promptforge ui` to investigate →
 |------|--------|
 | *(default)* | Colorized CLI with spinner + boxed failure diagnostics |
 | `--reporter json` | Machine-readable JSON to stdout |
-| `--reporter junit` | JUnit XML to `promptforge-results.xml` (or `--output <path>`) |
+| `--reporter junit` | JUnit XML to `promptforge-cli-results.xml` (or `--output <path>`) |
 
 ### Commands
 
 ```
-promptforge run [paths...]       Execute tests
-promptforge watch [paths...]     Re-run on change (a/f/p/↵/q)
-promptforge init                 Interactive scaffolder
-promptforge ui                   Launch the dashboard (127.0.0.1:3939)
-promptforge compare <a> <b>      Diff two runs — 'latest' and 'previous' work
-promptforge snapshot --update    Accept current outputs as golden
-promptforge snapshot --clear     Delete snapshots by pattern
-promptforge list                 Show discovered tests
+promptforge-cli run [paths...]       Execute tests
+promptforge-cli watch [paths...]     Re-run on change (a/f/p/↵/q)
+promptforge-cli init                 Interactive scaffolder
+promptforge-cli ui                   Launch the dashboard (127.0.0.1:3939)
+promptforge-cli compare <a> <b>      Diff two runs - run IDs, 'latest', 'previous', and 'previous:<runId>' work
+promptforge-cli snapshot --update    Accept current outputs as golden
+promptforge-cli snapshot --clear     Delete snapshots by pattern
+promptforge-cli list                 Show discovered tests
 ```
 
 ## Dashboard
@@ -182,7 +182,7 @@ explorer with pass-history sparklines.
 - [CLI Reference](docs/cli.md)
 - [Dashboard Guide](docs/dashboard.md)
 - [CI Integration](docs/ci.md)
-- [How PromptForge Compares](docs/comparison.md)
+- [How PromptForge CLI Compares](docs/comparison.md)
 - [Known Issues](docs/known-issues.md)
 
 ## Architecture
@@ -238,7 +238,7 @@ See [docs/known-issues.md](docs/known-issues.md) for the full list. Summary:
   `@xenova/transformers`. Mitigated at the resolution level via an
   `overrides` pin to `^7.5.5`; `npm audit --omit=dev` reports zero
   production vulnerabilities. Impact on non-mitigated installs is
-  limited to loading untrusted ONNX models (PromptForge only loads from
+  limited to loading untrusted ONNX models (PromptForge CLI only loads from
   pinned HuggingFace repositories).
 - **Node 20 `tsx/esm/api.register()`** emits a one-time
   `ExperimentalWarning`. Silence via `NODE_OPTIONS="--no-warnings=ExperimentalWarning"`.

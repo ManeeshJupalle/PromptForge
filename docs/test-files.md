@@ -1,6 +1,6 @@
 # Test files
 
-PromptForge discovers two formats: `*.test.yaml` and `*.test.ts`.
+PromptForge CLI discovers two formats: `*.test.yaml` and `*.test.ts`.
 
 - **YAML** for static tests — the default, read-and-write simple.
 - **TypeScript** for dynamic tests — fixtures, closures, computed cases.
@@ -55,7 +55,7 @@ Per-test fields:
 
 ```typescript
 // prompts/triage.test.ts
-import { defineTestSuite } from 'promptforge';
+import { defineTestSuite } from 'promptforge-cli';
 import { loadFixtures } from './fixtures.js';
 
 export default defineTestSuite({
@@ -131,7 +131,7 @@ table. Compare results in the dashboard's run-detail view.
 Override for a single run:
 
 ```bash
-promptforge run --provider anthropic
+promptforge-cli run --provider anthropic
 ```
 
 Substring match — `--provider anthropic` matches every
@@ -144,7 +144,7 @@ Substring match — `--provider anthropic` matches every
 `promptforge.config.ts` at your project root provides defaults:
 
 ```typescript
-import { defineConfig } from 'promptforge';
+import { defineConfig } from 'promptforge-cli';
 
 export default defineConfig({
   testDir: 'prompts',
@@ -156,10 +156,10 @@ export default defineConfig({
 ```
 
 Precedence: per-suite > project > hardcoded defaults. Suites that don't
-set `providers` inherit `defaultModels`. If `testDir` is set, `promptforge
+set `providers` inherit `defaultModels`. If `testDir` is set, PromptForge CLI
 run` (with no path args) discovers tests inside that directory only —
 explicit path arguments on the command line still take precedence.
 
-A malformed `promptforge.config.ts` is fatal: `promptforge run` and
-`promptforge list` exit with a non-zero status and print the Zod
+A malformed `promptforge.config.ts` is fatal: `promptforge-cli run` and
+`promptforge-cli list` exit with a non-zero status and print the Zod
 validation errors rather than silently continuing with defaults.

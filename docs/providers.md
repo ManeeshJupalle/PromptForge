@@ -1,6 +1,6 @@
 # Providers
 
-PromptForge ships with five providers. Each is dynamic-imported — you
+PromptForge CLI ships with five providers. Each is dynamic-imported — you
 only pay the SDK load cost for providers you actually use.
 
 ## Model naming
@@ -60,7 +60,7 @@ ollama serve &
 ollama pull llama3.2          # or phi3, mistral, etc.
 ```
 
-Point PromptForge at a non-default host:
+Point PromptForge CLI at a non-default host:
 
 ```bash
 export OLLAMA_HOST=http://192.168.1.10:11434

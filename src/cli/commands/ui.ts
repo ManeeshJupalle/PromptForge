@@ -25,7 +25,7 @@ export async function uiCommand(options: UiOptions): Promise<number> {
     const msg = (err as Error).message ?? String(err);
     if (msg.includes('EADDRINUSE')) {
       console.error(chalk.red(`Port ${port} is already in use.`));
-      console.error(chalk.dim(`Try \`promptforge ui --port ${port + 1}\``));
+      console.error(chalk.dim(`Try \`promptforge-cli ui --port ${port + 1}\``));
     } else {
       console.error(chalk.red(msg));
     }
@@ -33,7 +33,7 @@ export async function uiCommand(options: UiOptions): Promise<number> {
   }
 
   console.log();
-  console.log(chalk.bold('🧪 PromptForge dashboard'));
+  console.log(chalk.bold('🧪 PromptForge CLI dashboard'));
   console.log(`   ${chalk.cyan(running.url)}`);
   console.log(chalk.dim(`   reading .promptforge/db.sqlite at ${projectRoot}`));
   console.log(chalk.dim('   press Ctrl-C to stop'));

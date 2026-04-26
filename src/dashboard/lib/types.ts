@@ -75,6 +75,7 @@ export interface LatencyDay {
 export interface TrendsPayload {
   byDay: DailyRunAggregate[];
   latency: LatencyDay[];
+  latencyExcludesMock?: boolean;
 }
 
 export type StatusChange =

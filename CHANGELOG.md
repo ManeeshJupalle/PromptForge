@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to PromptForge will be documented here.
+All notable changes to PromptForge CLI will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -17,7 +17,7 @@ Initial public release. Built in one week.
 
 **Core**
 
-- CLI: `promptforge run | watch | list | init | snapshot | compare | ui`.
+- CLI: `promptforge-cli run | watch | list | init | snapshot | compare | ui`.
 - Test files: `*.test.yaml` for static, `*.test.ts` for dynamic
   (`defineTestSuite({...})` accepts closures, imports, fixtures).
 - Provider registry: Anthropic, OpenAI, Gemini, Ollama, and a first-class
@@ -37,10 +37,10 @@ Initial public release. Built in one week.
 **Storage & history**
 
 - SQLite at `.promptforge/db.sqlite` with forward-only migrations.
-- Run history: `runs`, `results`, `snapshots` tables. Every `promptforge run`
+- Run history: `runs`, `results`, `snapshots` tables. Every `promptforge-cli run`
   records a row with `git_commit`, `config_hash`, per-test assertions serialized
   as JSON.
-- `promptforge compare <a> <b>` — regressions, improvements, unchanged, added,
+- `promptforge-cli compare <a> <b>` — regressions, improvements, unchanged, added,
   removed; unified diff of outputs; cost + latency deltas.
 - Automatic regression summary at the end of every run.
 - `--no-record` flag on `run` / watch mode defaults — skip DB writes for
@@ -58,7 +58,7 @@ Initial public release. Built in one week.
 - TTY-aware CLI reporter: ora spinner during each test, boxen-framed
   failure cards grouped at the end, framed summary footer. Gracefully
   degrades to plain text in CI.
-- Interactive `promptforge init` scaffolder (@inquirer/prompts).
+- Interactive `promptforge-cli init` scaffolder (@inquirer/prompts).
 - Watch mode with interactive keys: `a` run all, `f` failed only,
   `p` pattern filter, `↵` re-run, `q` quit.
 - JUnit XML + JSON reporters (`--reporter junit|json`).
@@ -82,5 +82,5 @@ Initial public release. Built in one week.
   platform behavior). Real-terminal `Ctrl-C` routes through shutdown
   handlers correctly; this only affects scripted `child.kill()` scenarios.
 
-[Unreleased]: https://github.com/ManeeshJupalle/PromptForge/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/ManeeshJupalle/PromptForge/releases/tag/v0.1.0
+[Unreleased]: https://github.com/ManeeshJupalle/promptforge-cli/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/ManeeshJupalle/promptforge-cli/releases/tag/v0.1.0

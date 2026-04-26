@@ -34,7 +34,7 @@ promptforge snapshot --update --filter "extracts senior"
 ## Running
 
 ```bash
-promptforge run examples/extraction/
+promptforge-cli run examples/extraction/
 ```
 
 First run records snapshots under `.promptforge/db.sqlite`. Subsequent

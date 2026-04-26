@@ -46,7 +46,7 @@ export async function runCommand(paths: string[], options: RunOptions): Promise<
   const files = await discoverTests(cwd, paths, { testDir: defaults.testDir });
   if (files.length === 0) {
     console.log(chalk.yellow('No *.test.yaml or *.test.ts files found.'));
-    console.log(chalk.dim('Create one, or run `promptforge init` to scaffold an example.'));
+    console.log(chalk.dim('Create one, or run `promptforge-cli init` to scaffold an example.'));
     return 0;
   }
 

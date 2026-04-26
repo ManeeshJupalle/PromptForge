@@ -16,6 +16,18 @@ export interface LatencyDay {
 export interface TrendsPayload {
   byDay: DailyRunAggregate[];
   latency: LatencyDay[];
+  // Whether the server filtered mock providers out of the latency aggregation.
+  // Used by the UI to annotate the latency chart — otherwise a p50 of 0ms
+  // (because mock is instant) reads as a bug.
+  latencyExcludesMock: boolean;
+}
+
+// Mock provider is always 0ms, which pins p50 to 0 across every run that
+// uses it and makes the latency chart meaningless as a real-world
+// performance signal. Filter it out at the API layer so the chart reflects
+// what a production user actually experiences.
+function isMockProvider(p: string): boolean {
+  return p === 'mock' || p.startsWith('mock/');
 }
 
 export function trendsRoute(db: Database): Hono {
@@ -29,6 +41,7 @@ export function trendsRoute(db: Database): Hono {
     // (hundreds per day at most) so the overhead is trivial.
     const bucketed = new Map<string, number[]>();
     for (const row of listDailyLatencies(db)) {
+      if (isMockProvider(row.provider)) continue;
       const list = bucketed.get(row.day) ?? [];
       list.push(row.latency_ms);
       bucketed.set(row.day, list);
@@ -45,7 +58,7 @@ export function trendsRoute(db: Database): Hono {
     }
     latency.sort((a, b) => a.day.localeCompare(b.day));
 
-    const payload: TrendsPayload = { byDay, latency };
+    const payload: TrendsPayload = { byDay, latency, latencyExcludesMock: true };
     return c.json(payload);
   });
 

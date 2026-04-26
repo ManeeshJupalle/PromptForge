@@ -2,7 +2,7 @@
 
 ## Basics
 
-**Name**: PromptForge
+**Name**: PromptForge CLI
 
 **Tagline** (60 char max, hook-driven):
 `Jest for prompts — catch LLM regressions before production`
@@ -24,7 +24,7 @@
 
 ## What is it?
 
-PromptForge is the tool I wish existed the last time a silent prompt
+PromptForge CLI is the tool I wish existed the last time a silent prompt
 change cost my team a Friday. It lets you write tests that assert
 your prompts still do what you wrote them to do — shape validation,
 semantic similarity, LLM-as-judge scoring, snapshot drift detection,
@@ -43,7 +43,7 @@ ship JavaScript without tests? This does that for prompts.
   iterate for free.
 - **Self-hostable dashboard**: Hono + React + SQLite, all local.
   Binds to 127.0.0.1 only.
-- **CLI-first DX**: `promptforge run`, `promptforge watch`, `promptforge
+- **CLI-first DX**: `promptforge-cli run`, `promptforge-cli watch`, `promptforge-cli
   compare`. No web-app to log into, no click-through onboarding.
 
 ## Gallery images (in order)
@@ -68,17 +68,17 @@ One maker for launch (you). Brief "about" text:
 
 ## Hunter's outreach template (if you're asking someone to hunt it)
 
-Subject: Would you hunt PromptForge on Product Hunt?
+Subject: Would you hunt PromptForge CLI on Product Hunt?
 
 Hey [name],
 
 I'm launching an open-source testing framework for LLM prompts next
-[day] and I'd be honored if you'd hunt it. It's called PromptForge —
+[day] and I'd be honored if you'd hunt it. It's called PromptForge CLI —
 "Jest for prompts," MIT licensed, local-first, runs against
 Anthropic/OpenAI/Gemini/Ollama from the same test file, ships with a
 self-hostable dashboard.
 
-I've seen you hunt [tool1], [tool2] — PromptForge fits the same
+I've seen you hunt [tool1], [tool2] — PromptForge CLI fits the same
 "indie dev tool you'd actually install" energy.
 
 Demo GIF: [link]

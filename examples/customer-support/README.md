@@ -2,7 +2,7 @@
 
 A classifier prompt that turns unstructured user messages into structured
 support tickets. This is one of the most common real-world LLM shipping
-patterns and it has three failure modes PromptForge catches:
+patterns and it has three failure modes PromptForge CLI catches:
 
 1. **Schema drift.** A model update silently renames a field or adds
    `suggested_reply` as a nested object instead of a string. Caught by
@@ -28,7 +28,7 @@ patterns and it has three failure modes PromptForge catches:
 ## Running
 
 ```bash
-promptforge run examples/customer-support/
+promptforge-cli run examples/customer-support/
 ```
 
 To run against a real model, edit `providers:` in `triage.test.yaml` to

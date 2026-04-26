@@ -2,12 +2,12 @@
 // helper; the real power is that YAML-hostile things (closures, imports,
 // dynamic data) work here.
 //
-// Outside this repo, the `'promptforge'` import requires the package to
-// be installed locally (`npm install --save-dev promptforge`) — a global
+// Outside this repo, the `'promptforge-cli'` import requires the package to
+// be installed locally (`npm install --save-dev promptforge-cli`) — a global
 // CLI install alone can't resolve this specifier. If you only have the
 // global CLI, drop the import and `export default { ... }` as a plain
 // object instead.
-import { defineTestSuite } from 'promptforge';
+import { defineTestSuite } from 'promptforge-cli';
 
 const namesToGreet = ['Alice', 'Bob', 'Carol'];
 

@@ -67,7 +67,7 @@ async function clearSnapshots(pattern: string, force: boolean): Promise<number> 
 }
 
 function printHelp(): void {
-  console.log(chalk.bold('promptforge snapshot'));
+  console.log(chalk.bold('promptforge-cli snapshot'));
   console.log();
   console.log('  --update                 Re-run tests and accept outputs as the new golden snapshots.');
   console.log('  --clear <pattern>        Delete snapshots matching <pattern> (test name, file, or provider).');

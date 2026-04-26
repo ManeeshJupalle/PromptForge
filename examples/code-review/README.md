@@ -28,7 +28,7 @@ to a meaningfully different answer.
 ## Running
 
 ```bash
-promptforge run examples/code-review/
+promptforge-cli run examples/code-review/
 ```
 
 The semantic-similarity assertion triggers a one-time download of the

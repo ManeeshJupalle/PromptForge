@@ -12,7 +12,7 @@ First tweet carries the demo GIF so it renders in the timeline preview.
 >
 > I built a thing so it never happens again.
 >
-> PromptForge — Jest for prompts.
+> PromptForge CLI — Jest for prompts.
 >
 > [demo GIF attached]
 
@@ -33,9 +33,9 @@ rendering of GitHub's preview).
 
 ---
 
-## Tweet 3/6 — what PromptForge does
+## Tweet 3/6 — what PromptForge CLI does
 
-> PromptForge is a CLI + local dashboard that lets you assert your
+> PromptForge CLI is a CLI + local dashboard that lets you assert your
 > prompts work, the way you assert your code works.
 >
 > Write tests in YAML:
@@ -83,11 +83,11 @@ rendered in a dark-theme editor.
 
 > MIT licensed, v0.1.0, solo-built in one week.
 >
->   npm install -g promptforge
->   promptforge init
->   promptforge run
+>   npm install -g promptforge-cli
+>   promptforge-cli init
+>   promptforge-cli run
 >
-> GitHub: github.com/ManeeshJupalle/PromptForge
+> GitHub: github.com/ManeeshJupalle/promptforge-cli
 >
 > Feedback especially welcome on the assertion types — what am I
 > missing?
@@ -110,7 +110,7 @@ I shipped a prompt change last month that silently broke our support classifier 
 
 I built a thing so it never happens again.
 
-PromptForge — Jest for prompts.
+PromptForge CLI — Jest for prompts.
 ```
 
 Tweet 2 (reply to 1):
@@ -122,7 +122,7 @@ You can't CI what you can't assert.
 
 Tweet 3 (reply to 2):
 ```
-PromptForge is a CLI + local dashboard that lets you assert your prompts work, the way you assert your code works.
+PromptForge CLI is a CLI + local dashboard that lets you assert your prompts work, the way you assert your code works.
 
 Write tests in YAML. Run them. Every run = one SQLite row. Compare any two runs. Catch regressions automatically.
 ```
@@ -145,11 +145,11 @@ Tweet 6 (reply to 5):
 ```
 MIT, v0.1.0, solo-built in one week.
 
-  npm install -g promptforge
-  promptforge init
-  promptforge run
+  npm install -g promptforge-cli
+  promptforge-cli init
+  promptforge-cli run
 
-GitHub: github.com/ManeeshJupalle/PromptForge
+GitHub: github.com/ManeeshJupalle/promptforge-cli
 
 Feedback especially welcome on the assertion types — what am I missing?
 ```

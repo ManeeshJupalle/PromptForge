@@ -33,8 +33,8 @@ export async function startServer(opts: StartServerOptions): Promise<RunningServ
   const hostname = opts.hostname ?? '127.0.0.1';
   const db = await getDb(opts.projectRoot);
 
-  // Hono + node adapter are dynamic-imported so `promptforge run` and
-  // `promptforge list` never pay their load cost.
+  // Hono + node adapter are dynamic-imported so `promptforge-cli run` and
+  // `promptforge-cli list` never pay their load cost.
   const { Hono } = await import('hono');
   const { serve } = await import('@hono/node-server');
   const { serveStatic } = await import('@hono/node-server/serve-static');

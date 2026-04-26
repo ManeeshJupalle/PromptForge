@@ -2,15 +2,15 @@
 
 ## Title options (pick one)
 
-1. `Show HN: PromptForge – Jest for prompts, local-first, multi-provider`
-2. `Show HN: PromptForge – A testing framework for LLM prompts with a self-hostable dashboard`
-3. `Show HN: PromptForge – Catch prompt regressions before they hit production`
+1. `Show HN: PromptForge CLI – Jest for prompts, local-first, multi-provider`
+2. `Show HN: PromptForge CLI – A testing framework for LLM prompts with a self-hostable dashboard`
+3. `Show HN: PromptForge CLI – Catch prompt regressions before they hit production`
 
 **Recommendation**: #1. "Jest for prompts" is instantly legible to HN readers; the two qualifiers clarify what it *isn't* (cloud, single-provider).
 
 ## URL
 
-`https://github.com/ManeeshJupalle/PromptForge`
+`https://github.com/ManeeshJupalle/promptforge-cli`
 
 ## First comment (post this yourself, within 30 seconds of submission)
 
@@ -23,7 +23,7 @@ a refund reply; a JSON shape drifts from `email: null` to `email: "N/A"`;
 a model update re-classifies a billing complaint as "other." Nothing
 obviously broken, just quietly worse.
 
-PromptForge is a CLI that treats these as regressions and fails the
+PromptForge CLI is a CLI that treats these as regressions and fails the
 build. You write assertions in YAML (or TypeScript if you want
 closures):
 
@@ -45,10 +45,10 @@ runs.
 Things it deliberately does *not* do: hosted backend, team features,
 agent-trajectory evals, dataset management. Those are fine tools —
 Braintrust, LangSmith, Langfuse, PromptLayer — and I've written an
-honest comparison in the docs. PromptForge is the local-first,
+honest comparison in the docs. PromptForge CLI is the local-first,
 CLI-first, one-person-on-a-laptop option.
 
-It's MIT, v0.1.0, installable via `npm i -g promptforge`. I'd love
+It's MIT, v0.1.0, installable via `npm i -g promptforge-cli`. I'd love
 feedback on anything — the reporter aesthetics, what assertions are
 missing, where the DX breaks down.
 

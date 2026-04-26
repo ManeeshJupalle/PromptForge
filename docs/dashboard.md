@@ -1,6 +1,6 @@
 # Dashboard
 
-`promptforge ui` launches a local read-only web UI over
+`promptforge-cli ui` launches a local read-only web UI over
 `.promptforge/db.sqlite`. Dark-mode, single-page, no network calls
 beyond `127.0.0.1:3939`.
 
@@ -29,20 +29,21 @@ renderers (similarity score, judge reasoning, snapshot deltas, etc.),
 token usage, cost, latency.
 
 Top-right: a "compare to previous" link that jumps to the compare view
-pre-filled with `a=previous&b=<current-id>`.
+pre-filled with `a=previous:<current-id>&b=<current-id>`.
 
 ### Compare (`/compare?a=X&b=Y`)
 
-Same engine as the CLI's `promptforge compare`. Groups tests into
+Same engine as the CLI's `promptforge-cli compare`. Groups tests into
 Regressions, Improvements, Unchanged (pass/fail), Added, Removed.
 Each regression opens expanded by default with a side-by-side
 `react-diff-viewer` showing the output change; cost/latency deltas
 inline.
 
-Query params accept run IDs or the keywords `latest` / `previous`:
+Query params accept run IDs, `latest`, `previous`, or `previous:<runId>`:
 
 ```
 /compare?a=previous&b=latest
+/compare?a=previous:run_abc123&b=run_abc123
 /compare?a=Vm8Xc2lJr3&b=latest
 ```
 
@@ -69,8 +70,8 @@ fetches the run.
 
 ## Running the dashboard separately from runs
 
-`promptforge run` and `promptforge ui` don't need to run at the same
+`promptforge-cli run` and `promptforge-cli ui` don't need to run at the same
 time. The CLI writes to SQLite; the dashboard reads. Keep a dashboard
-open in one terminal and iterate with `promptforge run` in another —
+open in one terminal and iterate with `promptforge-cli run` in another —
 refresh the dashboard to see the new row. (Live WebSocket updates are
 on the v0.2 roadmap.)

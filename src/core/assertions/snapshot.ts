@@ -41,7 +41,7 @@ export async function assertSnapshot(ctx: AssertionContext, raw: Assertion): Pro
     passed,
     message: passed
       ? undefined
-      : `snapshot drift: similarity ${similarity.toFixed(3)} below threshold ${threshold.toFixed(3)} — run \`promptforge snapshot --update\` to accept`,
+      : `snapshot drift: similarity ${similarity.toFixed(3)} below threshold ${threshold.toFixed(3)} — run \`promptforge-cli snapshot --update\` to accept`,
     details: {
       similarity,
       threshold,

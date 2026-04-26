@@ -1,4 +1,4 @@
-// Public library entry. Users importing `promptforge` inside a *.test.ts file
+// Public library entry. Users importing `promptforge-cli` inside a *.test.ts file
 // reach this module via Node's package self-reference, and the types below
 // give them autocomplete for the test-suite shape.
 

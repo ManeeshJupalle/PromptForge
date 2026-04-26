@@ -3,7 +3,7 @@ import path from 'node:path';
 import type { RunSummary } from '../runner/index.js';
 import type { TestResult } from '../types/index.js';
 
-const DEFAULT_PATH = 'promptforge-results.xml';
+const DEFAULT_PATH = 'promptforge-cli-results.xml';
 
 export class JUnitReporter {
   constructor(
@@ -40,7 +40,7 @@ export function renderJUnit(summary: RunSummary, cwd: string): string {
   const chunks: string[] = [];
   chunks.push('<?xml version="1.0" encoding="UTF-8"?>');
   chunks.push(
-    `<testsuites name="promptforge" tests="${summary.total}" failures="${summary.failed}" time="${totalTime}" timestamp="${timestamp}">`,
+    `<testsuites name="promptforge-cli" tests="${summary.total}" failures="${summary.failed}" time="${totalTime}" timestamp="${timestamp}">`,
   );
 
   for (const [file, rs] of byFile) {

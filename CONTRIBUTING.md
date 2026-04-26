@@ -1,16 +1,16 @@
-# Contributing to PromptForge
+# Contributing to PromptForge CLI
 
-Thanks for the interest. PromptForge is young — every early contribution shapes where it goes.
+Thanks for the interest. PromptForge CLI is young — every early contribution shapes where it goes.
 
 ## Getting set up
 
 ```bash
-git clone https://github.com/ManeeshJupalle/PromptForge.git
-cd promptforge
+git clone https://github.com/ManeeshJupalle/promptforge-cli.git
+cd promptforge-cli
 npm install
 npm run typecheck
 npm run build
-node ./bin/promptforge run examples/hello
+node ./bin/promptforge-cli run examples/hello
 ```
 
 Node 20+ required. The dashboard build needs an extra ~3 seconds on top of the CLI build.
@@ -19,7 +19,7 @@ Node 20+ required. The dashboard build needs an extra ~3 seconds on top of the C
 
 ```bash
 # terminal 1 — run the Hono server against real data
-node ./bin/promptforge ui --port 3939
+node ./bin/promptforge-cli ui --port 3939
 
 # terminal 2 — Vite dev server with proxy to 3939
 npm run dev:dashboard
@@ -48,7 +48,7 @@ Include Node version, OS, and the minimal reproduction if it's a bug.
 
 ## Scope
 
-PromptForge is deliberately small for v0.1. Before opening a PR for a large
+PromptForge CLI is deliberately small for v0.1. Before opening a PR for a large
 feature, check [ROADMAP.md](ROADMAP.md) and file a discussion issue first.
 Good PR targets right now: error-message polish, new example suites,
 documentation improvements, small assertion types, alternative reporters.

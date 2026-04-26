@@ -1,4 +1,4 @@
-# 🔥 PromptForge — The Testing Framework for LLM Prompts
+# 🔥 PromptForge CLI — The Testing Framework for LLM Prompts
 
 **Jest for prompts.** Drop it into any project with LLM calls, write test files in YAML or TypeScript, and run with a beautiful CLI that catches regressions before they hit production.
 
@@ -6,7 +6,7 @@
 
 ## Why This Exists
 
-Anyone can wire up an LLM API call. The hard part is knowing when your prompt *silently got worse*. Teams ship prompt changes with the same rigor they ship untested production code — by vibing. PromptForge fixes that.
+Anyone can wire up an LLM API call. The hard part is knowing when your prompt *silently got worse*. Teams ship prompt changes with the same rigor they ship untested production code — by vibing. PromptForge CLI fixes that.
 
 **Core principles:**
 
@@ -66,7 +66,7 @@ tests:
 
 ```typescript
 // prompts/customer-support/triage.test.ts
-import { defineTestSuite } from 'promptforge';
+import { defineTestSuite } from 'promptforge-cli';
 import { loadFixtures } from './fixtures';
 
 export default defineTestSuite({
@@ -88,9 +88,9 @@ export default defineTestSuite({
 ### The CLI
 
 ```bash
-$ promptforge run
+$ promptforge-cli run
 
-🧪 PromptForge v0.1.0
+🧪 PromptForge CLI v0.1.0
 
 PASS  prompts/customer-support/triage.test.yaml
   ✓ classifies billing complaint (anthropic/claude-sonnet-4-6) 412ms $0.0008
@@ -108,7 +108,7 @@ Providers:   anthropic, openai
 Cost:        $0.0018
 Duration:    1.2s
 
-Run `promptforge ui` to investigate failures →
+Run `promptforge-cli ui` to investigate failures →
 ```
 
 ---
@@ -150,7 +150,7 @@ Run `promptforge ui` to investigate failures →
                               │  (Vite+React)  │
                               │                │
                               │ bundled via    │
-                              │ `promptforge   │
+                              │ `promptforge-cli   │
                               │     ui`        │
                               └───────────────┘
 ```
@@ -180,9 +180,9 @@ Run `promptforge ui` to investigate failures →
 ## Project Structure
 
 ```
-promptforge/
+promptforge-cli/
 ├── bin/
-│   └── promptforge                 # CLI entry point shebang
+│   └── promptforge-cli                 # CLI entry point shebang
 ├── src/
 │   ├── cli/
 │   │   ├── index.ts                # main CLI entry
@@ -272,33 +272,33 @@ promptforge/
 ## CLI Surface (Full Reference)
 
 ```bash
-# Scaffold a new PromptForge project in current directory
-promptforge init
+# Scaffold a new PromptForge CLI project in current directory
+promptforge-cli init
 
 # Run all tests (auto-discovers *.test.yaml and *.test.ts)
-promptforge run
-promptforge run prompts/customer-support/  # specific path
-promptforge run --provider anthropic        # filter providers
-promptforge run --filter "billing"          # filter test names
-promptforge run --reporter json             # machine-readable output
+promptforge-cli run
+promptforge-cli run prompts/customer-support/  # specific path
+promptforge-cli run --provider anthropic        # filter providers
+promptforge-cli run --filter "billing"          # filter test names
+promptforge-cli run --reporter json             # machine-readable output
 
 # Watch mode — re-runs on file changes
-promptforge watch
+promptforge-cli watch
 
 # Compare two historical runs (by ID or "latest"/"previous")
-promptforge compare previous latest
-promptforge compare abc123 def456
+promptforge-cli compare previous latest
+promptforge-cli compare abc123 def456
 
 # Launch the web dashboard (spawns Hono server + opens browser)
-promptforge ui
-promptforge ui --port 3939
+promptforge-cli ui
+promptforge-cli ui --port 3939
 
 # List all discovered tests without running
-promptforge list
+promptforge-cli list
 
 # Snapshot management
-promptforge snapshot --update         # accept new outputs as golden
-promptforge snapshot --clear <test>   # clear specific snapshot
+promptforge-cli snapshot --update         # accept new outputs as golden
+promptforge-cli snapshot --clear <test>   # clear specific snapshot
 ```
 
 ---
@@ -362,7 +362,7 @@ Records output on first run. Fails on subsequent runs if output drifts beyond th
   similarity: 0.9  # required semantic similarity to stored snapshot
 ```
 
-Update snapshots with `promptforge snapshot --update`.
+Update snapshots with `promptforge-cli snapshot --update`.
 
 ### 7. `cost` / `latency`
 ```yaml
@@ -477,7 +477,7 @@ Database location: `.promptforge/db.sqlite` in project root (gitignored by defau
 
 ## Dashboard Features
 
-Served via `promptforge ui`. CLI spawns a Hono server on port 3939 (configurable), opens browser.
+Served via `promptforge-cli ui`. CLI spawns a Hono server on port 3939 (configurable), opens browser.
 
 **Pages:**
 
@@ -514,7 +514,7 @@ Served via `promptforge ui`. CLI spawns a Hono server on port 3939 (configurable
 - Basic test runner (sequential first, then parallel)
 - Three simplest assertions: `contains`, `notContains`, `regex`
 - Basic CLI reporter (chalk-colored pass/fail list)
-- **Deliverable:** `promptforge run` executes tests, prints pass/fail
+- **Deliverable:** `promptforge-cli run` executes tests, prints pass/fail
 
 ### Day 2 (Tue) — Provider Layer
 - Provider interface + registry
@@ -540,14 +540,14 @@ Served via `promptforge ui`. CLI spawns a Hono server on port 3939 (configurable
 - Schema migrations
 - Record every run + result + snapshot
 - TS config loader (via tsx runtime)
-- `promptforge compare <a> <b>` CLI command with terminal diff
+- `promptforge-cli compare <a> <b>` CLI command with terminal diff
 - Regression detection ("test X passed last run, fails now")
 - **Deliverable:** Historical runs queryable, diff-able
 
 ### Day 5 (Fri) — Dashboard
 - Vite + React + Tailwind scaffold in `src/dashboard/`
 - Hono API server reading from SQLite
-- `promptforge ui` command: spawns server, opens browser
+- `promptforge-cli ui` command: spawns server, opens browser
 - Pages: Runs list, Run detail, Compare, Trends
 - Diff viewer component with syntax highlighting
 - Recharts integration for trend charts
@@ -555,8 +555,8 @@ Served via `promptforge ui`. CLI spawns a Hono server on port 3939 (configurable
 
 ### Day 6 (Sat) — Polish
 - Beautiful CLI output (Jest-style): spinner per test, grouped failures at bottom, summary box
-- Watch mode (`promptforge watch`) — chokidar-based file watching
-- `promptforge init` interactive scaffolder (prompt questions, generate example files)
+- Watch mode (`promptforge-cli watch`) — chokidar-based file watching
+- `promptforge-cli init` interactive scaffolder (prompt questions, generate example files)
 - JUnit XML reporter for CI integration
 - Config file support (`promptforge.config.ts`) for global defaults
 - Helpful error messages (yaml syntax errors, missing API keys, etc.)
@@ -576,10 +576,10 @@ Served via `promptforge ui`. CLI spawns a Hono server on port 3939 (configurable
 ## Getting Started (User-facing)
 
 ```bash
-npm install -g promptforge
+npm install -g promptforge-cli
 
 cd my-llm-project
-promptforge init
+promptforge-cli init
 
 # Set up API keys
 export ANTHROPIC_API_KEY=sk-...
@@ -589,10 +589,10 @@ export OPENAI_API_KEY=sk-...
 cat prompts/hello.test.yaml
 
 # Run it
-promptforge run
+promptforge-cli run
 
 # See results in dashboard
-promptforge ui
+promptforge-cli ui
 ```
 
 ---
@@ -649,7 +649,7 @@ tests:
 
 ## Design Principles
 
-1. **Zero config to start, infinitely configurable.** `promptforge init` → working tests in 30 seconds. Config file optional.
+1. **Zero config to start, infinitely configurable.** `promptforge-cli init` → working tests in 30 seconds. Config file optional.
 
 2. **CLI output is a feature.** Not an afterthought. Spend real time making it beautiful. Study Jest, Vitest, Playwright output.
 

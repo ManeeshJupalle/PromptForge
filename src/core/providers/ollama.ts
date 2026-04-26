@@ -40,7 +40,7 @@ export function createOllamaProvider(name: string, model: string): Provider {
           });
         } catch (err) {
           throw new Error(
-            `${name}: could not reach Ollama at ${baseUrl} — is the daemon running? (${(err as Error).message})\n  Start it with \`ollama serve\`, or point PromptForge at a different host via OLLAMA_HOST.`,
+            `${name}: could not reach Ollama at ${baseUrl} — is the daemon running? (${(err as Error).message})\n  Start it with \`ollama serve\`, or point PromptForge CLI at a different host via OLLAMA_HOST.`,
           );
         }
         if (!res.ok) {

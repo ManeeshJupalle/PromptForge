@@ -19,7 +19,7 @@ export interface WatchOptions {
 export async function watchCommand(paths: string[], options: WatchOptions): Promise<number> {
   const cwd = process.cwd();
   if (!process.stdout.isTTY) {
-    console.error(chalk.red('promptforge watch requires an interactive terminal (TTY).'));
+    console.error(chalk.red('promptforge-cli watch requires an interactive terminal (TTY).'));
     return 1;
   }
 
@@ -35,7 +35,7 @@ export async function watchCommand(paths: string[], options: WatchOptions): Prom
   }
   let lastGoodProject = initialProject;
 
-  // chokidar is dynamic-imported so `promptforge run` never pays its fs-watcher
+  // chokidar is dynamic-imported so `promptforge-cli run` never pays its fs-watcher
   // startup cost.
   interface ChokidarWatcher {
     on(event: 'change' | 'add' | 'unlink', cb: (path: string) => void): void;
@@ -233,7 +233,7 @@ export async function watchCommand(paths: string[], options: WatchOptions): Prom
           console.log(chalk.yellow(`  · ${path.relative(cwd, h)}`));
         }
         console.log(
-          chalk.dim('  Quit with `q` and re-run `promptforge watch` to pick up the new content (Node caches ESM modules by URL; transitive imports can\'t be hot-swapped in-process).'),
+          chalk.dim('  Quit with `q` and re-run `promptforge-cli watch` to pick up the new content (Node caches ESM modules by URL; transitive imports can\'t be hot-swapped in-process).'),
         );
       }
 
@@ -412,7 +412,7 @@ function clearScreen(): void {
 }
 
 function printWatchHeader(label: string): void {
-  console.log(chalk.bold(`🧪 PromptForge watch`) + chalk.dim(`  ·  ${label}`));
+  console.log(chalk.bold(`🧪 PromptForge CLI watch`) + chalk.dim(`  ·  ${label}`));
   console.log();
 }
 

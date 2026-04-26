@@ -5,7 +5,7 @@
 # Record:     `vhs scripts/demo.tape`
 #
 # Target: ~15 seconds, crisp pixels. The scene shows a failing assertion
-# because failures are why PromptForge exists — tests that only show
+# because failures are why PromptForge CLI exists — tests that only show
 # green are marketing, not demos.
 
 Output docs/images/demo.gif
@@ -21,7 +21,7 @@ Set LoopOffset 30%
 
 # Start in a clean temp project so viewers see a realistic first-run.
 Hide
-Type "cd /tmp/pf-demo && rm -rf .promptforge prompts promptforge.config.ts && promptforge init --no-open < /dev/null || true" Enter
+Type "cd /tmp/pf-demo && rm -rf .promptforge prompts promptforge.config.ts && promptforge-cli init --no-open < /dev/null || true" Enter
 Sleep 500ms
 Show
 
@@ -30,7 +30,7 @@ Type "cat prompts/hello.test.yaml" Enter
 Sleep 2s
 
 # Scene 2: first run — clean pass
-Type "promptforge run" Enter
+Type "promptforge-cli run" Enter
 Sleep 3s
 
 # Scene 3: break the prompt to simulate a regression
@@ -39,9 +39,9 @@ Type "sed -i 's/Welcome aboard/Goodbye forever/' prompts/hello.test.yaml" Enter
 Sleep 200ms
 Show
 
-Type "promptforge run" Enter
+Type "promptforge-cli run" Enter
 Sleep 4s
 
 # Scene 4: compare shows the regression
-Type "promptforge compare previous latest" Enter
+Type "promptforge-cli compare previous latest" Enter
 Sleep 3s
