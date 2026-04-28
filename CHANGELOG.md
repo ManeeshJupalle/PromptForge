@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Nothing yet. See [ROADMAP.md](ROADMAP.md) for what's planned.
 
-## [0.1.0] - 2026-04-27
+## [0.1.0] - 2026-04-28
 
 Initial public release. Built in one week.
 

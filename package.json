@@ -22,7 +22,7 @@
     "typescript"
   ],
   "license": "MIT",
-  "author": "PromptForge CLI contributors",
+  "author": "Maneesh Jupalle <maneeshreddy28@gmail.com>",
   "homepage": "https://github.com/ManeeshJupalle/promptforge-cli#readme",
   "repository": {
     "type": "git",
